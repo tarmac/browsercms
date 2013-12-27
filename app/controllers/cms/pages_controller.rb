@@ -3,7 +3,6 @@ module Cms
 
     helper Cms::RenderingHelper
 
-    before_filter :set_toolbar_tab
     before_filter :load_section, :only => [:new, :create]
     before_filter :load_page, :only => [:versions, :version, :revert_to, :destroy]
     before_filter :load_draft_page, :only => [:edit, :update]
@@ -157,10 +156,6 @@ module Cms
 
     def hide_toolbar
       @hide_page_toolbar = true
-    end
-
-    def set_toolbar_tab
-      @toolbar_tab = :sitemap
     end
 
     def load_templates

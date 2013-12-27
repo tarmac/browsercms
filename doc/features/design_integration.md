@@ -5,6 +5,7 @@
 ### [Ask Kyle]
 
 * no-bottom vs bottom-form-btn - Some pages use this, others don't. This is being added at the layout level, so its complicated to retain.
+* Fonts for Dashboard table headers/menus are just less bold than in design.
 
 Bootstrap 3 - Test after we finish upgrading.
 
@@ -12,6 +13,7 @@ Bootstrap 3 - Test after we finish upgrading.
 
 ### Dashboard
 * Publishing pages without selecting on throws an error.
+* [New Feature] My Activity/All Activity
 
 ### Content
 * [BUG] Optimistic locking for pages doesn't work.

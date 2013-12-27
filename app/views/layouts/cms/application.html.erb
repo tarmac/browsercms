@@ -5,7 +5,6 @@
   <%= javascript_include_tag *cms_content_editor %>
   <%= render 'layouts/cms/head' %>
 </head>
-<% @toolbar_tab ||= :dashboard %>
 <body>
 <nav id="main-nav">
   <%= render 'layouts/cms/main_menu' %>
@@ -15,7 +14,7 @@
   <%= content_tag :div, msg, class: name %>
 <% end -%>
 
-<section class="container center-column main-container bottom-form-btn  clearfix">
+<section class="container center-column main-container bottom-form-btn clearfix">
   <div class="padded row-fluid clearfix">
     <div class="span12"><%= yield %></div>
   </div>

@@ -3,7 +3,6 @@ module Cms
 
     before_filter :load_parent, :only => [:new, :create]
     before_filter :load_section, :only => [:edit, :update, :destroy, :move]
-    before_filter :set_toolbar_tab
 
     helper_method :public_groups
     helper_method :cms_groups
@@ -93,8 +92,5 @@ module Cms
       @cms_groups ||= Cms::Group.cms_access.order( "#{Cms::Group.table_name}.name")
     end
 
-    def set_toolbar_tab
-      @toolbar_tab = :sitemap
-    end
   end
 end

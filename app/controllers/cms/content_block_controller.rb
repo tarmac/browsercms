@@ -6,7 +6,6 @@ module Cms
     include Cms::ContentRenderingSupport
 
     allow_guests_to [:show_via_slug]
-    before_filter :set_toolbar_tab
 
     helper_method :block_form, :content_type
     helper Cms::RenderingHelper
@@ -288,12 +287,6 @@ module Cms
         else
           raise Cms::Errors::AccessDenied
       end
-    end
-
-    # methods to setup the view
-
-    def set_toolbar_tab
-      @toolbar_tab = :content_library
     end
 
     private
