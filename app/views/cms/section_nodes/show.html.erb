@@ -9,7 +9,6 @@
                       <%= icon_tag(@root_section_node) %>
                       My Site
                     </span>
-                  <%= render 'row_buttons' %>
                 </span>
                 <% children = @sitemap[@root_section_node] %>
                 <% children.keys.each do |section_node| %>
@@ -21,7 +20,7 @@
                                 <%= section_node.node.name %>
                             </span>
 
-                          <%= render 'row_buttons' %>
+                          <%= render partial: 'row_buttons', locals: {section_node: section_node} %>
                           <%= render 'status' %>
                         </span>
                       </li>
@@ -34,7 +33,6 @@
                                     <span aria-hidden="true" class="type-icon icon-folder"></span>
                                     System
                                 </span>
-                              <%= render 'row_buttons' %>
                               <%= render 'status' %>
                             </span>
 

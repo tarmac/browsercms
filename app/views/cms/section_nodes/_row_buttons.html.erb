@@ -1,7 +1,11 @@
 <ul class="edit-group">
-  <li><a href="#" class="add-link">View</a></li>
-  <li><a href="#" class="add-link">Edit</a></li>
+  <li><%= link_to 'View', polymorphic_path(section_node.node), class: 'add-link' %></li>
+  <li><%= link_to 'Edit', edit_polymorphic_path(section_node.node), class: 'add-link' %></li>
+  <% if section_node.page? %>
   <li><a href="#" class="add-link">Archive</a></li>
+  <% end %>
   <li><a href="#" class="add-link">Hide</a></li>
-  <li><a href="#" class="add-link">Remove</a></li>
+  <li><%= link_to 'Remove', polymorphic_path(section_node.node),
+                  class: 'add-link http_delete confirm_with_title',
+                  title: "Are you sure you want to remove #{section_node.node.name}?"%></li>
 </ul>
