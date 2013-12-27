@@ -1,20 +1,226 @@
-<%= render 'nav_bar' %>
-<div id="filter">Show: <select id="filtershow">
-  <option value="none" selected="selected">None</option>
-  <option value="event">Events</option>
-  <option value="article">Articles</option>
-  <option value="portlet">Portlets</option>
-  <option value="slide">Slides</option>
-  <option value="all">All</option>
-</select></div>
+<%= render 'sitemap_buttons' %>
 
-<div id="sitemap">
-  <ul class="nav nav-list nav-stacked">
-    <%= render partial: @section.partial_for,
-               :object => @section,
-               locals: {
-                       child_hash: @sitemap,
-                       key: @root_section_node
-               } %>
-  </ul>
+<div class="main-content padded row-fluid clearfix">
+    <div id="sitemap">
+        <ul class="nav nav-list">
+            <li class="nav-list-item">
+                <span class="nav-list-span level-one">
+                    <span class="text">
+                      <%= icon_tag(@root_section_node) %>
+                      My Site
+                    </span>
+                  <%= render 'row_buttons' %>
+                </span>
+                <% children = @sitemap[@root_section_node] %>
+                <% children.keys.each do |section_node| %>
+                    <ul class="nav nav-list">
+                      <li class="nav-list-item">
+                        <span class="nav-list-span level-two">
+                            <span class="text">
+                                <%= icon_tag(section_node) %>
+                                <%= section_node.node.name %>
+                            </span>
+
+                          <%= render 'row_buttons' %>
+                          <%= render 'status' %>
+                        </span>
+                      </li>
+                    </ul>
+                <% end %>
+                <ul class="nav nav-list">
+                  <li class="nav-list-item">
+                            <span class="nav-list-span level-two">
+                                <span class="text">
+                                    <span aria-hidden="true" class="type-icon icon-folder"></span>
+                                    System
+                                </span>
+                              <%= render 'row_buttons' %>
+                              <%= render 'status' %>
+                            </span>
+
+                    <ul class="nav nav-list">
+                      <li class="nav-list-item">
+                                    <span class="nav-list-span level-three">
+                                        <span class="text">
+                                            <span aria-hidden="true" class="type-icon icon-file"></span>
+
+                                            Page Not Found
+                                        </span>
+
+                                        <ul class="edit-group">
+                                          <li><a href="#" class="add-link">View</a></li>
+                                          <li><a href="#" class="add-link">Edit</a></li>
+                                          <li><a href="#" class="add-link">Archive</a></li>
+                                          <li><a href="#" class="add-link">Hide</a></li>
+                                          <li><a href="#" class="add-link">Remove</a></li>
+                                        </ul>
+
+                                        <div class="permission-group">
+                                          <span aria-hidden="true" class="permission-icon icon-eye-blocked"></span>
+                                          <span aria-hidden="true" class="permission-icon icon-locked"></span>
+                                        </div>
+                                    </span>
+                      </li>
+
+                      <li class="nav-list-item">
+                                    <span class="nav-list-span level-three">
+                                        <span class="text">
+                                            <span aria-hidden="true" class="type-icon icon-file"></span>
+
+                                            Access Denied
+                                        </span>
+
+                                        <ul class="edit-group">
+                                          <li><a href="#" class="add-link">View</a></li>
+                                          <li><a href="#" class="add-link">Edit</a></li>
+                                          <li><a href="#" class="add-link">Archive</a></li>
+                                          <li><a href="#" class="add-link">Hide</a></li>
+                                          <li><a href="#" class="add-link">Remove</a></li>
+                                        </ul>
+
+                                        <div class="permission-group">
+                                          <span class="draft">Draft</span>
+                                          <span aria-hidden="true" class="permission-icon icon-eye-blocked"></span>
+                                          <span aria-hidden="true" class="permission-icon icon-locked"></span>
+                                        </div>
+                                    </span>
+                      </li>
+
+                      <li class="nav-list-item last-nav-list-item">
+                                    <span class="nav-list-span level-three">
+                                        <span class="text">
+                                            <span aria-hidden="true" class="type-icon icon-file"></span>
+
+                                            Server Error
+                                        </span>
+
+                                        <ul class="edit-group">
+                                          <li><a href="#" class="add-link">View</a></li>
+                                          <li><a href="#" class="add-link">Edit</a></li>
+                                          <li><a href="#" class="add-link">Archive</a></li>
+                                          <li><a href="#" class="add-link">Hide</a></li>
+                                          <li><a href="#" class="add-link">Remove</a></li>
+                                        </ul>
+
+                                        <div class="permission-group">
+                                          <span aria-hidden="true" class="permission-icon icon-eye-blocked"></span>
+                                          <span aria-hidden="true" class="permission-icon icon-locked"></span>
+                                        </div>
+                                    </span>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+
+                <ul class="nav nav-list">
+                  <li class="nav-list-item">
+                            <span class="nav-list-span level-two">
+                                <span class="text">
+                                    <span aria-hidden="true" class="type-icon icon-folder"></span>
+
+                                    Products
+                                </span>
+
+                                <ul class="edit-group">
+                                  <li><a href="#" class="add-link">View</a></li>
+                                  <li><a href="#" class="add-link">Edit</a></li>
+                                  <li><a href="#" class="add-link">Archive</a></li>
+                                  <li><a href="#" class="add-link">Hide</a></li>
+                                  <li><a href="#" class="add-link">Remove</a></li>
+                                </ul>
+
+                                <div class="permission-group">
+                                  <span aria-hidden="true" class="permission-icon icon-eye-blocked"></span>
+                                </div>
+                            </span>
+
+                    <ul class="nav nav-list">
+                      <li class="nav-list-item">
+                                    <span class="nav-list-span level-three">
+                                        <span class="text">
+                                            <span aria-hidden="true" class="type-icon icon-list"></span>
+
+                                            New Product
+                                        </span>
+
+                                        <ul class="edit-group">
+                                          <li><a href="#" class="add-link">View</a></li>
+                                          <li><a href="#" class="add-link">Edit</a></li>
+                                          <li><a href="#" class="add-link">Archive</a></li>
+                                          <li><a href="#" class="add-link">Hide</a></li>
+                                          <li><a href="#" class="add-link">Remove</a></li>
+                                        </ul>
+                                    </span>
+                      </li>
+
+                      <li class="nav-list-item">
+                                    <span class="nav-list-span level-three">
+                                        <span class="text">
+                                            <span aria-hidden="true" class="type-icon icon-file"></span>
+
+                                            Legal Page
+                                        </span>
+
+                                        <ul class="edit-group">
+                                          <li><a href="#" class="add-link">View</a></li>
+                                          <li><a href="#" class="add-link">Edit</a></li>
+                                          <li><a href="#" class="add-link">Archive</a></li>
+                                          <li><a href="#" class="add-link">Hide</a></li>
+                                          <li><a href="#" class="add-link">Remove</a></li>
+                                        </ul>
+
+                                        <div class="permission-group">
+                                          <span class="draft">Draft</span>
+                                        </div>
+                                    </span>
+                      </li>
+
+                      <li class="nav-list-item">
+                                    <span class="nav-list-span level-three">
+                                        <span class="text">
+                                            <span aria-hidden="true" class="type-icon icon-file"></span>
+
+                                            Product Testing Page
+                                        </span>
+
+                                        <ul class="edit-group">
+                                          <li><a href="#" class="add-link">View</a></li>
+                                          <li><a href="#" class="add-link">Edit</a></li>
+                                          <li><a href="#" class="add-link">Archive</a></li>
+                                          <li><a href="#" class="add-link">Hide</a></li>
+                                          <li><a href="#" class="add-link">Remove</a></li>
+                                        </ul>
+
+                                        <div class="permission-group">
+                                          <span class="draft">Draft</span>
+                                        </div>
+                                    </span>
+                      </li>
+                    </ul>
+
+                    <ul class="nav nav-list">
+                      <li class="nav-list-item">
+                                    <span class="nav-list-span level-two last-item">
+                                        <span class="text">
+                                            <span aria-hidden="true" class="type-icon icon-file"></span>
+
+                                            About Landing Page
+                                        </span>
+
+                                        <ul class="edit-group">
+                                          <li><a href="#" class="add-link">View</a></li>
+                                          <li><a href="#" class="add-link">Edit</a></li>
+                                          <li><a href="#" class="add-link">Archive</a></li>
+                                          <li><a href="#" class="add-link">Hide</a></li>
+                                          <li><a href="#" class="add-link">Remove</a></li>
+                                        </ul>
+                                    </span>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+</li>
+</ul>
 </div>
+</div>
+

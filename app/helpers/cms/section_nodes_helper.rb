@@ -1,10 +1,26 @@
 module Cms
   module SectionNodesHelper
 
+    def icon_tag(section_node)
+      name = 'folder'
+      if section_node.ancestors.size == 0
+        name = 'earth'
+      elsif section_node.home?
+        name = 'house'
+      elsif section_node.page?
+        name = 'file'
+      end
+      content_tag("span", "", {'aria-hidden' => true, class: "type-icon icon-#{name}"})
+    end
+
+    ## Pre 4.0 Redesign helpers
+
+    # @deprecated
     def protected_content_icon(section)
       icon "warning-sign" unless @modifiable_sections.include?(section)
     end
 
+    # @deprecated
     def icon(name)
       content_tag("i", "", {class: "icon-#{name}"})
     end
