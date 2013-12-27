@@ -1,11 +1,19 @@
-## Design Integration
+# Design Integration
 
-Set up Kyle with different manifest style.css file that imports same scss
-Form Styles: Write up task for Kyle on doing passive form styling.
+## Latest Notes
+
+### [Ask Kyle]
+
+* no-bottom vs bottom-form-btn - Some pages use this, others don't. This is being added at the layout level, so its complicated to retain.
+
 Bootstrap 3 - Test after we finish upgrading.
 
 ## Tasks
 
+### Dashboard
+* Publishing pages without selecting on throws an error.
+
+### Content
 * [BUG] Optimistic locking for pages doesn't work.
 * {BUG} Can't add content blocks to pages (javascript insert)
 * [REFACTOR] New Page form - Remove all CSS classes from ERB so that new form generation is clean.
