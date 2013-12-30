@@ -12,6 +12,12 @@ module Cms
       end
     end
 
+    # Returns a css class for determine sitemap depth.
+    def sitemap_depth_tag(section_node)
+      one_based_depth = section_node.depth + 1
+      "level-#{one_based_depth}"
+    end
+
     # Generate HTML for 'hidden' icon for hidden content.
     # @param [Object] content
     # @return [String] HTML (HTML safe)
