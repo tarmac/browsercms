@@ -21,7 +21,7 @@
                             </span>
 
                           <%= render partial: 'row_buttons', locals: {section_node: section_node} %>
-                          <%= render 'status' %>
+                          <%= render partial: 'status', locals: {content: section_node.node} %>
                         </span>
                       </li>
                     </ul>
@@ -33,7 +33,7 @@
                                     <span aria-hidden="true" class="type-icon icon-folder"></span>
                                     System
                                 </span>
-                              <%= render 'status' %>
+                              <%#= render 'status' %>
                             </span>
 
                     <ul class="nav nav-list">

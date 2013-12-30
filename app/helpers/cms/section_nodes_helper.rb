@@ -1,6 +1,15 @@
 module Cms
   module SectionNodesHelper
 
+    # Generate HTML for 'hidden' icon for hidden content.
+    def hidden_icon_tag(content)
+      if content.respond_to?(:hidden?) && content.hidden?
+        '<span aria-hidden="true" class="permission-icon icon-eye-blocked"></span>'.html_safe
+      else
+        ''
+      end
+    end
+
     def icon_tag(section_node)
       name = 'folder'
       if section_node.ancestors.size == 0
