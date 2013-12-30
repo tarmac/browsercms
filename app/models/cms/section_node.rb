@@ -75,6 +75,10 @@ class Cms::SectionNode < ActiveRecord::Base
     node_type == 'Cms::Page'
   end
 
+  def link?
+    node_type == 'Cms::Link'
+  end
+
   # @param [Section] section
   # @param [Integer] position
   def move_to(section, position)

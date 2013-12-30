@@ -38,6 +38,8 @@ module Cms
         name = 'earth'
       elsif section_node.home?
         name = 'house'
+      elsif section_node.link?
+        name = 'link'
       elsif section_node.page?
         name = 'file'
       end
