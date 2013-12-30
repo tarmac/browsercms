@@ -1,7 +1,20 @@
 module Cms
   module SectionNodesHelper
 
+    # Generate HTML for draft icon for pages that are in draft
+    # @param [Object] content
+    # @return [String] HTML (HTML safe)
+    def draft_icon_tag(content)
+      if content.respond_to?(:draft?) && content.draft?
+        '<span class="draft">Draft</span>'.html_safe
+      else
+        ''
+      end
+    end
+
     # Generate HTML for 'hidden' icon for hidden content.
+    # @param [Object] content
+    # @return [String] HTML (HTML safe)
     def hidden_icon_tag(content)
       if content.respond_to?(:hidden?) && content.hidden?
         '<span aria-hidden="true" class="permission-icon icon-eye-blocked"></span>'.html_safe
@@ -10,6 +23,7 @@ module Cms
       end
     end
 
+    # Generate the HTML for a given section node.
     def icon_tag(section_node)
       name = 'folder'
       if section_node.ancestors.size == 0
@@ -36,7 +50,7 @@ module Cms
 
     def status_tag(publishable_content)
       status = publishable_content.status.to_s
-      letter = status[0,1]
+      letter = status[0, 1]
       content_tag("span", letter, class: "status #{status}")
     end
 

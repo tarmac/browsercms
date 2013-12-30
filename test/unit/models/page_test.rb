@@ -63,6 +63,13 @@ module Cms
 
   class VersionTest < ActiveSupport::TestCase
 
+    def draft_page
+      return @draft_page if @draft_page
+      @draft_page = create(:public_page)
+      @draft_page.update(:name => "New", :publish_on_save => false)
+      @draft_page.reload
+    end
+
     def setup
       @page = create(:public_page)
       @another_page = create(:public_page)
@@ -98,6 +105,14 @@ module Cms
       @page.publish!
       @page.reload
       assert @page.live?
+    end
+
+    test "draft pages are not live" do
+      refute draft_page.live?
+    end
+
+    test "draft?" do
+      assert draft_page.draft?
     end
 
     test "live? as_of_version" do
