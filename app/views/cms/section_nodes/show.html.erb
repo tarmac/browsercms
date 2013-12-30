@@ -9,6 +9,10 @@
                       <%= icon_tag(@root_section_node) %>
                       My Site
                     </span>
+                  <%# Need to make the following buttons work%>
+                  <%#= render partial: 'row_buttons', locals: {section_node: @root_section_node} %>
+                  <%= render partial: 'status', locals: {parent: @root_section_node.node, content: @root_section_node.node} %>
+
                 </span>
                 <% children = @sitemap[@root_section_node] %>
                 <% children.keys.each do |section_node| %>
