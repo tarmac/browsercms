@@ -21,7 +21,7 @@
                             </span>
 
                           <%= render partial: 'row_buttons', locals: {section_node: section_node} %>
-                          <%= render partial: 'status', locals: {content: section_node.node} %>
+                          <%= render partial: 'status', locals: {parent: @root_section_node.node, content: section_node.node} %>
                         </span>
                       </li>
                     </ul>

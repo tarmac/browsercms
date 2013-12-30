@@ -365,6 +365,35 @@ module Cms
     end
   end
 
+
+  class PageAccessiblityTest < ActiveSupport::TestCase
+
+    def public_sections
+      [public_section]
+    end
+
+    def public_section
+      @public_section ||= create(:public_section)
+    end
+
+    def protected_section
+      @protected_section ||= create(:protected_section)
+    end
+
+    def protected_page
+      @protected_page ||= create(:page, parent: protected_section)
+    end
+
+    test "accessible_to_guests?" do
+      public_page = create(:public_page, parent: public_section)
+      assert public_page.accessible_to_guests?(public_sections, public_section)
+    end
+
+    test "pages in restricted sections are not accessible_to_guests?" do
+      refute protected_page.accessible_to_guests?(public_sections, protected_section)
+    end
+  end
+
   class UserStampingTest < ActiveSupport::TestCase
 
     def setup
@@ -938,4 +967,6 @@ module Cms
       assert @page.reload.connectors.for_page_version(@page.draft.version).empty?, "Verify that all connectors for the latest page are removed."
     end
   end
+
+
 end

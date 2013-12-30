@@ -23,6 +23,14 @@ module Cms
       end
     end
 
+    def protected_icon_tag(parent, content)
+      unless content.accessible_to_guests?(@public_sections, parent)
+        '<span aria-hidden="true" class="permission-icon icon-locked"></span>'.html_safe
+      else
+        ''
+      end
+    end
+
     # Generate the HTML for a given section node.
     def icon_tag(section_node)
       name = 'folder'

@@ -60,7 +60,7 @@ class Cms::Page < ActiveRecord::Base
       super + [:visibility, :publish_on_save]
     end
   end
-  # currently_connected_to tightens the scope of connected_to by restricting to the 
+  # currently_connected_to tightens the scope of connected_to by restricting to the
   # results to matches on current versions of pages only.  This renders obj versions
   # useless, as the older objects will very likely have older versions of pages and
   # thus return no results.
@@ -426,5 +426,13 @@ class Cms::Page < ActiveRecord::Base
     elsif new_state.to_sym == :hidden
       self.hidden = true
     end
+  end
+
+  # Pages are accessible to guests if their parent section is. Variables are passed in for performance reasons since this gets called 'MANY' times on the sitemap.
+  #
+  # @param [Array<Section>] public_sections
+  # @param [Section] parent
+  def accessible_to_guests?(public_sections, parent)
+    public_sections.include?(parent)
   end
 end
