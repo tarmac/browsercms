@@ -170,6 +170,14 @@ module Cms
         end
       end
 
+      # Resources are accessible to guests if their parent section is. Variables are passed in for performance reasons
+      # since this gets called 'MANY' times on the sitemap.
+      #
+      # @param [Array<Section>] public_sections
+      # @param [Section] parent
+      def accessible_to_guests?(public_sections, parent)
+        public_sections.include?(parent)
+      end
 
       # Returns all classes which need a custom route to show themselves.
       def self.classes_that_require_custom_routes

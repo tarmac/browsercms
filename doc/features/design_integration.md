@@ -6,6 +6,8 @@
 
 * no-bottom vs bottom-form-btn - Some pages use this, others don't. This is being added at the layout level, so its complicated to retain.
 * Fonts for Dashboard table headers/menus are just less bold than in design.
+* Icons for:
+    - Links
 
 Bootstrap 3 - Test after we finish upgrading.
 

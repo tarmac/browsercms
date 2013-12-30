@@ -428,11 +428,4 @@ class Cms::Page < ActiveRecord::Base
     end
   end
 
-  # Pages are accessible to guests if their parent section is. Variables are passed in for performance reasons since this gets called 'MANY' times on the sitemap.
-  #
-  # @param [Array<Section>] public_sections
-  # @param [Section] parent
-  def accessible_to_guests?(public_sections, parent)
-    public_sections.include?(parent)
-  end
 end
