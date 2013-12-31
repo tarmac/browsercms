@@ -12,7 +12,6 @@
 
 ## Sitemap
 
-- Update server side to place items in sections/reorder
 - Disable access to sections for editors without permissions.
 
 ## Tasks

@@ -38,7 +38,7 @@ Sitemap.prototype.moveTo = function(node_id, target_node_id, position) {
       position: position
     },
     success: function(result) {
-      sitemap.clickWebsite();
+      //console.log(result);
     }
   });
 };
@@ -145,22 +145,29 @@ $(function() {
   $('#sitemap .nav-list-span').droppable({
     hoverClass: "droppable",
     drop: function(event, ui) {
-      var movedElement = ui.draggable.parents('.nav-list').first();
-      var droppedOnElement = $(this).parents('.nav-list').first();
+      var elementToMove = ui.draggable.parents('.nav-list').first();
+      var elementDroppedOn = $(this).parents('.nav-list').first();
       var targetDepth = $(this).data('depth');
+
 
       if (sitemap.isFolder($(this))) {
         // Drop INTO sections
         sitemap.attemptOpen($(this));
         sitemap.updateDepth(ui.draggable, targetDepth + 1);
-        droppedOnElement.find('li').first().append(movedElement);
-
+        elementDroppedOn.find('li').first().append(elementToMove);
+        var newParentId = $(this).data('id');
       } else {
         sitemap.updateDepth(ui.draggable, targetDepth);
         // Drop AFTER pages
-        movedElement.insertAfter(droppedOnElement);
+        var newParentId = elementDroppedOn.parents('.nav-list:first').find('.nav-list-span:first').data('id');
+        elementToMove.insertAfter(elementDroppedOn);
       }
 
+      // Move item on server
+      var nodeIdToMove = ui.draggable.data('id');
+      var newPosition = elementToMove.index();
+      console.log("Move section_node", nodeIdToMove, " to parent:", newParentId, 'at position', newPosition);
+      sitemap.moveTo(nodeIdToMove, newParentId, newPosition);
 
       // Need a manual delay otherwise the animation happens before the insert.
       window.setTimeout(function() {
