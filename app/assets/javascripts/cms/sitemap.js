@@ -175,6 +175,10 @@ Sitemap.prototype.isFolder = function(row) {
   return row.data('type') == 'folder';
 };
 
+Sitemap.prototype.isClosable = function(row) {
+  return row.data('closable') == true;
+};
+
 // @param [Selector] link
 // @param [Object] options
 Sitemap.prototype.open = function(row, options) {
@@ -199,8 +203,7 @@ Sitemap.prototype.close = function(row) {
 };
 
 Sitemap.prototype.toggleOpen = function(row) {
-  if (!this.isFolder(row)) {
-    console.log('Not a folder', row);
+  if (!this.isClosable(row)) {
     return;
   }
   if (this.isOpen(row)) {

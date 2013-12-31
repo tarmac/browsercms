@@ -12,7 +12,10 @@
 
 ## Sitemap
 
-- Need to be able to drop content into empty folders.
+- Constrain dragging to sitemap area.
+- Open folders as you hover
+- Delay dragging
+- Better icon for dragging.
 - Update server side to place items in sections/reorder
 - Disable access to sections for editors without permissions.
 - Remove GlobalMenu

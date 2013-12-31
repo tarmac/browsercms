@@ -62,8 +62,8 @@ module Cms
 
 
     # Determines if a row is leaf or folder based on whether there are any subchildren.
-    def row_type_tag(children)
-      children.empty? ? 'leaf' : 'folder'
+    def row_type_tag(section_node)
+      section_node.section? ? 'folder' : 'leaf'
     end
 
     ## Pre 4.0 Redesign helpers
