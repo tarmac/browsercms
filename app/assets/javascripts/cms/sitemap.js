@@ -243,7 +243,9 @@ $(function() {
     revert: true,
     revertDuration: 0,
     axis: 'y',
-    zIndex: 10000 //or greater than any other relative/absolute/fixed elements and droppables
+    delay: 250,
+    cursor: 'move',
+    stack: '.nav-list-span'
   });
 
   $('#sitemap .nav-list-span').droppable({
