@@ -14,6 +14,10 @@
 	position: relative;
 	margin: 0;
 	padding: 0;
+  // Demonstrates positioning of actual list elements
+  //border: 5px solid rgba(black,0.1); // Remove
+  //  margin: 10;
+ 	//padding: 10;
 
     &.hide {
       display: none;
@@ -44,6 +48,9 @@
 				}
 			}
 
+            &.droppable {
+              background: $light-blue;
+            }
 			&.active {
 				background: rgba($gray,0.4);
 

@@ -165,7 +165,7 @@ Sitemap.prototype.saveAsClosed = function(id) {
 Sitemap.prototype.restoreOpenState = function() {
   var section_node_ids = $.cookieSet.get(Sitemap.STATE);
   _.each(section_node_ids, function(id) {
-    var row = $('.row[data-id=' + id + ']');
+    var row = $('.nav-list-span[data-id=' + id + ']');
     sitemap.open(row, {animate: false});
   });
 };
@@ -182,10 +182,10 @@ Sitemap.prototype.open = function(row, options) {
   _.defaults(options, {animate: true});
   this.changeIcon(row, 'icon-folder-open');
   var siblings = row.siblings('ul.nav');
-  if(options.animate){
+  if (options.animate) {
     siblings.slideToggle();
   }
-  else{
+  else {
     siblings.show();
   }
   this.saveAsOpened(row.data('id'));
@@ -227,53 +227,85 @@ Sitemap.prototype.cleanUpHighlights = function() {
 
 var sitemap = new Sitemap();
 
-//$(function() {
-//  // Enable buttons for Selecting pages
+// Use Drag/drop to make this work.
+$(function() {
+  $('#sitemap .nav-list-span').draggable({
+    revert: true,
+    revertDuration: 0,
+    axis: 'y',
+    zIndex: 10000 //or greater than any other relative/absolute/fixed elements and droppables
+  });
+
+  $('#sitemap .nav-list-span').droppable({
+    hoverClass: "droppable",
+    drop: function(event, ui){
+      var moved_ul = ui.draggable.parents('.nav-list').first();
+      var dropped_on = $(this).parents('.nav-list').first();
+      var newDepth = $(this).data('depth');
+      var oldDepth = ui.draggable.data('depth');
+      ui.draggable.attr('class', 'ui-draggable ui-droppable nav-list-span').addClass(newDepth);
+      ui.draggable.attr('data-depth', newDepth);
+      moved_ul.insertAfter(dropped_on);
+      window.setTimeout(function(){
+        ui.draggable.effect({effect: 'highlight', duration: 500,color: '#0079c1'});
+      }, 250);
+    }
+  });
+});
+
+$(function() {
+  // Enable buttons for Selecting pages
 //  $('.selectable').on('click', function() {
 //    sitemap.selectRow($(this));
 //  });
 //  $('.selectable').on('dblclick', sitemap._doubleClick);
 //  sitemap.clickWebsite();
+  $('.sitemap ul ul').sortable({
 //  $('#sitemap ul ul').sortable({
-//
-//    helper: 'clone',
-//    appendTo: 'body',
-//    zIndex: 10000, //or greater than any other relative/absolute/fixed elements and droppables
-//    connectWith: '#sitemap ul ul',
-//    placeholder: 'ui-placeholder',
-//    delay: 250,
-//    start: function(event, ui) {
-//
-//      // Clean up the element that is being dragged so its just the name and icon.
+
+    helper: 'clone',
+    appendTo: 'body',
+    zIndex: 10000, //or greater than any other relative/absolute/fixed elements and droppables
+    connectWith: '#sitemap ul',
+    placeholder: 'ui-placeholder',
+    delay: 250,
+    start: function(event, ui) {
+      console.log("Start", ui);
+
+      // Clean up the element that is being dragged so its just the name and icon.
 //      ui.helper.find('span').remove();
-//
+
 //      sitemap.clearSelection();
 //      sitemap.highlightEmptySections();
-//    },
-//    stop: function(event, ui) {
+    },
+    stop: function(event, ui) {
+      console.log("stop");
+
 //      var parent_section = ui.item.parents('ul:first');
 //      var moving_node_id = ui.item.children('a:first').data('node-id');
 //      sitemap.move_to(moving_node_id, parent_section.data('node-id'), ui.item.index() + 1);
 //      sitemap.cleanUpHighlights();
-//    },
-//
-//    // As we move items around, expand (permanently) the surrounding lists to provide drop targets.
-//    change: function(event, ui) {
+    },
+
+    // As we move items around, expand (permanently) the surrounding lists to provide drop targets.
+    change: function(event, ui) {
+//      console.log("change");
+
 //      var previousLink = $(ui.placeholder.prev().children('a')[0]);
 //      sitemap.open(previousLink, true);
 //      var nextLink = $(ui.placeholder.next().children('a')[0]);
 //      sitemap.open(nextLink, true);
-//
-//    }
-//  });
-//});
+
+    }
+  });
+});
 
 // Change the folder icon when they are opened/closed.
 $(function() {
   // Ensure this only loads on sitemap page.
   if ($('#sitemap').exists()) {
     sitemap.restoreOpenState();
-    $('.row').on('click', function(event) {
+    $('.nav-list-span').on('click', function(event) {
       sitemap.toggleOpen($(this));
     });
   }

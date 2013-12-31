@@ -4,6 +4,7 @@
 
 ### [Ask Kyle]
 
+* The lists are not the same size as the spans, which makes it impossible to use them for drop targets. Had to use more base 'draggable' code rather than sortable.
 * no-bottom vs bottom-form-btn - Some pages use this, others don't. This is being added at the layout level, so its complicated to retain.
 * Fonts for Dashboard table headers/menus are just less bold than in design.
 * Icons for:
@@ -11,7 +12,6 @@
 
 ## Sitemap
 
-- Move items in sitemap
 - Disable access to sections for editors without permissions.
 - Remove GlobalMenu
 - Remove all unused selected element behavior
