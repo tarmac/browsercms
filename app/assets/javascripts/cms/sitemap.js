@@ -169,7 +169,7 @@ Sitemap.prototype.restoreOpenState = function() {
 };
 
 // Determines if the selected row is a Folder or not.
-Sitemap.prototype.isFolder = function(row){
+Sitemap.prototype.isFolder = function(row) {
   return row.data('type') == 'folder';
 };
 
@@ -187,8 +187,8 @@ Sitemap.prototype.close = function(row) {
   row.siblings('ul.nav').slideToggle();
 };
 
-Sitemap.prototype.toggleOpen = function(row){
-  if(!this.isFolder(row)){
+Sitemap.prototype.toggleOpen = function(row) {
+  if (!this.isFolder(row)) {
     console.log('Not a folder', row);
     return;
   }
@@ -209,7 +209,7 @@ Sitemap.prototype.highlightEmptySections = function() {
   });
 };
 
-Sitemap.prototype.cleanUpHighlights = function(){
+Sitemap.prototype.cleanUpHighlights = function() {
   $('.empty-section-highlight').removeClass('empty-section-highlight');
 };
 
@@ -260,12 +260,13 @@ var sitemap = new Sitemap();
 // Change the folder icon when they are opened/closed.
 $(function() {
   // Ensure this only loads on sitemap page.
-  console.log('startup');
-  sitemap.restoreOpenState();
-  $('.row').on('click', function(event){
-    console.log('click');
-    sitemap.toggleOpen($(this));
-  });
+  if ($('#sitemap').exists()) {
+    sitemap.restoreOpenState();
+    $('.row').on('click', function(event) {
+      sitemap.toggleOpen($(this));
+    });
+  }
+
 });
 
 // Make Sitemap filters show specific content types.
