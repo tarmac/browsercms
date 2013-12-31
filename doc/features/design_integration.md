@@ -12,7 +12,6 @@
 
 ## Sitemap
 
-- Constrain dragging to sitemap area.
 - Open folders as you hover
 - Delay dragging
 - Better icon for dragging.

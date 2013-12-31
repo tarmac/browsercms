@@ -239,6 +239,7 @@ var sitemap = new Sitemap();
 // Use Drag/drop to make this work.
 $(function() {
   $('#sitemap .nav-list-span').draggable({
+    containment: '#sitemap',
     revert: true,
     revertDuration: 0,
     axis: 'y',
