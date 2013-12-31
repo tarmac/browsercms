@@ -9,7 +9,13 @@
 * Icons for:
     - Links
 
-Bootstrap 3 - Test after we finish upgrading.
+## Sitemap
+
+- Only load for sitemap
+- Move items in sitemap
+- Save open state
+- Empty folder should always be open and not toggleable
+- Remove GlobalMenu
 
 ## Tasks
 

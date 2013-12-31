@@ -52,6 +52,12 @@ module Cms
       content_tag("span", "", {'aria-hidden' => true, class: "type-icon icon-#{name}"})
     end
 
+
+    # Determines if a row is leaf or folder based on whether there are any subchildren.
+    def row_type_tag(children)
+      children.empty? ? 'leaf' : 'folder'
+    end
+
     ## Pre 4.0 Redesign helpers
 
     # @deprecated
