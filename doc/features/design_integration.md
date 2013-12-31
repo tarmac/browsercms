@@ -11,7 +11,6 @@
 
 ## Sitemap
 
-- Only level 1 items should be open at the start.
 - Save open state
 - Empty folder should always be open and not toggleable
 - Move items in sitemap

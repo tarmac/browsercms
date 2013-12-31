@@ -12,8 +12,13 @@ module Cms
       end
     end
 
+    # When sitemap initially renders, we only want to show first level.
+    def initial_visibility_class(section_node)
+      section_node.depth > 1 ? 'hide' : ''
+    end
+
     # Returns a css class for determine sitemap depth.
-    def sitemap_depth_tag(section_node)
+    def sitemap_depth_class(section_node)
       one_based_depth = section_node.depth + 1
       "level-#{one_based_depth}"
     end
@@ -39,7 +44,7 @@ module Cms
 
     # Generate the HTML for a given section node.
     def icon_tag(section_node)
-      name = 'folder-open'
+      name = 'folder'
       if section_node.ancestors.size == 0
         name = 'earth'
       elsif section_node.home?
