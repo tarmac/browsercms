@@ -43,16 +43,19 @@ module Cms
     end
 
     # Generate the HTML for a given section node.
-    def icon_tag(section_node)
-      name = 'folder'
-      if section_node.ancestors.size == 0
-        name = 'earth'
+    def icon_tag(section_node, children)
+      name = if section_node.ancestors.size == 0
+        'earth'
       elsif section_node.home?
-        name = 'house'
+        'house'
       elsif section_node.link?
-        name = 'link'
+        'link'
       elsif section_node.page?
-        name = 'file'
+        'file'
+      elsif children.empty?
+        'folder-open'
+      else
+        'folder'
       end
       content_tag("span", "", {'aria-hidden' => true, class: "type-icon icon-#{name}"})
     end

@@ -12,7 +12,6 @@
 ## Sitemap
 
 - Save open state
-- Empty folder should always be open and not toggleable
 - Move items in sitemap
 - Remove GlobalMenu
 
