@@ -14,8 +14,6 @@
 
 - Update server side to place items in sections/reorder
 - Disable access to sections for editors without permissions.
-- Remove GlobalMenu
-- Remove all unused selected element behavior
 
 ## Tasks
 
