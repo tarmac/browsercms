@@ -11,9 +11,10 @@
 
 ## Sitemap
 
-- Save open state
 - Move items in sitemap
+- Disable access to sections for editors without permissions.
 - Remove GlobalMenu
+- Remove all unused selected element behavior
 
 ## Tasks
 

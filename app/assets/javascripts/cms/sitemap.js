@@ -8,10 +8,12 @@
 
 
 // Sitemap uses JQuery.Sortable to handling moving elements.
+// Open/Close are handled as code below.
 var Sitemap = function() {
 };
 
-Sitemap.STATE = 'cms.sitemap.opened';
+// Name of cookie that stores SectionNode ids that should be opened.
+Sitemap.STATE = 'cms.sitemap.open_folders';
 
 // @return [Selector] The currently selected section in the sitemap. If a page or other child is selected, this will be
 //    that element's parent.
@@ -154,17 +156,17 @@ Sitemap.prototype.changeIcon = function(row, icon) {
 Sitemap.prototype.saveAsOpened = function(id) {
   $.cookieSet.add(Sitemap.STATE, id);
 };
-Sitemap.prototype.closedSection = function(id) {
+
+Sitemap.prototype.saveAsClosed = function(id) {
   $.cookieSet.remove(Sitemap.STATE, id);
 };
 
 // Reopen all sections that the user was last working with.
 Sitemap.prototype.restoreOpenState = function() {
-  var section_ids = $.cookieSet.get(Sitemap.STATE);
-  _.each(section_ids, function(id) {
-    var link = $('.selectable[data-type="section"][data-id=' + id + ']');
-    sitemap.changeIcon(link, 'icon-folder-open');
-    $(link.data('target')).addClass('in');
+  var section_node_ids = $.cookieSet.get(Sitemap.STATE);
+  _.each(section_node_ids, function(id) {
+    var row = $('.row[data-id=' + id + ']');
+    sitemap.open(row, {animate: false});
   });
 };
 
@@ -174,17 +176,26 @@ Sitemap.prototype.isFolder = function(row) {
 };
 
 // @param [Selector] link
-// @param [Boolean] forceOpen (Optional: false) Whether to manually force open the section
-Sitemap.prototype.open = function(row, forceOpen) {
-//  forceOpen = forceOpen || false;
+// @param [Object] options
+Sitemap.prototype.open = function(row, options) {
+  options = options || {}
+  _.defaults(options, {animate: true});
   this.changeIcon(row, 'icon-folder-open');
-  row.siblings('ul.nav').slideToggle();
+  var siblings = row.siblings('ul.nav');
+  if(options.animate){
+    siblings.slideToggle();
+  }
+  else{
+    siblings.show();
+  }
+  this.saveAsOpened(row.data('id'));
 };
 
 Sitemap.prototype.close = function(row) {
 //  this.closedSection(link.data('id'));
   this.changeIcon(row, 'icon-folder');
   row.siblings('ul.nav').slideToggle();
+  this.saveAsClosed(row.data('id'));
 };
 
 Sitemap.prototype.toggleOpen = function(row) {
