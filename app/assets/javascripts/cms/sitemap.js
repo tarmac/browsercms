@@ -195,8 +195,14 @@ Sitemap.prototype.open = function(row, options) {
   this.saveAsOpened(row.data('id'));
 };
 
+// Attempts to open the given row. Will skip if the item cannot or is already open.
+Sitemap.prototype.attemptOpen = function(row, options) {
+  if (!this.isOpen(row)) {
+    this.open(row, options);
+  }
+};
+
 Sitemap.prototype.close = function(row) {
-//  this.closedSection(link.data('id'));
   this.changeIcon(row, 'icon-folder');
   row.siblings('ul.nav').slideToggle();
   this.saveAsClosed(row.data('id'));
@@ -257,9 +263,7 @@ $(function() {
 
       if (sitemap.isFolder($(this))) {
         // Drop INTO sections
-        if(!sitemap.isOpen($(this))){
-          sitemap.open($(this));
-        }
+        sitemap.attemptOpen($(this));
         sitemap.updateDepth(ui.draggable, targetDepth + 1);
         droppedOnElement.find('li').first().append(movedElement);
 
