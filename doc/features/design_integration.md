@@ -16,6 +16,9 @@
 
 ## Tasks
 
+### New Page
+
+
 ### Dashboard
 * Publishing pages without selecting on throws an error.
 * [New Feature] My Activity/All Activity

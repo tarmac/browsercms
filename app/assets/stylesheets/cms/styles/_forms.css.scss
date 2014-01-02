@@ -568,7 +568,8 @@ select:focus:invalid:focus {
 
 
 .control-group {
-  	@include rem(margin-bottom,0.75rem);
+  // Removed since input elements themselves have bottom margins.
+  //@include rem(margin-bottom,0.75rem);
 }
 legend + .control-group {
   	@include rem(margin-top,1.25rem);
