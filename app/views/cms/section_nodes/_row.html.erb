@@ -1,27 +1,5 @@
 <% unless children.empty? %>
     <% children.keys.each do |section_node| %>
-        <% subchildren = children[section_node] %>
-
-        <ul class="nav nav-list <%= initial_visibility_class(section_node) %>">
-          <li class="nav-list-item">
-            <span class="nav-list-span <%= sitemap_depth_class(section_node) %>"
-                  data-id="<%= section_node.id %>"
-                  data-depth="<%= section_node.depth + 1 %>"
-                  data-type="<%= row_type_tag(section_node) %>"
-                  data-closable="<%= !subchildren.empty? %>"
-            >
-                <span class="text">
-                    <%= icon_tag(section_node, subchildren) %>
-                  <%= section_node.node.name %>
-                </span>
-
-              <% if current_user_can_modify(@modifiable_sections, section_node, parent.node) %>
-              <%= render partial: 'row_buttons', locals: {section_node: section_node} %>
-                  <% end %>
-              <%= render partial: 'status', locals: {parent: parent.node, content: section_node.node} %>
-            </span>
-            <%= render partial: 'row', locals: {parent: section_node, children: subchildren} %>
-          </li>
-        </ul>
+        <%= render partial: 'sitemap_node', locals: {section_node: section_node, parent: parent, children: children[section_node]} %>
     <% end %>
 <% end %>

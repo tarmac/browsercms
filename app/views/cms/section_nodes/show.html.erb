@@ -1,30 +1,10 @@
 <%= render 'sitemap_buttons' %>
-<%
-   children = @sitemap[@root_section_node]
-   section_node = @root_section_node
-%>
 
 <div class="main-content padded row-fluid clearfix">
   <div id="sitemap">
-    <ul class="nav nav-list">
-      <li class="nav-list-item">
-        <span class="nav-list-span <%= sitemap_depth_class(section_node)%>"
-                          data-id="<%= section_node.id %>"
-                          data-depth="<%= section_node.depth + 1 %>"
-                          data-type="<%= row_type_tag(section_node)%>"
-                          data-closable="<%= !children.empty? %>"
-                    >
-            <span class="text">
-              <%= icon_tag(@root_section_node, children) %>
-              My Site
-            </span>
-          <%# Need to make the following buttons work%>
-          <%= render partial: 'row_buttons', locals: {section_node: @root_section_node} %>
-          <%= render partial: 'status', locals: {parent: @root_section_node.node, content: @root_section_node.node} %>
-        </span>
-        <%= render partial: 'row', locals: {parent: @root_section_node, children: children} %>
-      </li>
-    </ul>
+    <%= render partial: 'sitemap_node', locals: {section_node: @root_section_node,
+                                                 parent: nil,
+                                                 children: @sitemap[@root_section_node]} %>
   </div>
 </div>
 

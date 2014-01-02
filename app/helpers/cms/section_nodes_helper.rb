@@ -60,11 +60,22 @@ module Cms
       content_tag("span", "", {'aria-hidden' => true, class: "type-icon icon-#{name}"})
     end
 
-    def current_user_can_modify(modifiable_sections, section_node, parent)
+    # Marks a section to determine if it can be opened/closed in the sitemap.
+    def closable_data(section_node, children)
+      if(section_node.root?)
+        false
+      elsif !children.empty?
+        true
+      else
+        false
+      end
+    end
+
+    def current_user_can_modify(modifiable_sections, section_node, parent_section_node)
       if section_node.section?
         modifiable_sections.include?(section_node.node)
       else
-        modifiable_sections.include?(parent)
+        modifiable_sections.include?(parent_section_node.node)
       end
     end
 
