@@ -40,9 +40,10 @@
 			@include rem(font-size, 1.1rem);
 
 			&:hover {
-				background: rgba($gray,0.175);
+                cursor: pointer;
+  				background: rgba($gray,0.175);
 
-				.type-icon {
+              	.type-icon {
 					@include opacity(1);
 				}
 			}

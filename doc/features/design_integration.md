@@ -16,7 +16,6 @@
 
 - Add page/section to selected item
 - Check performance
-- Icon for hovering is annoying
 
 ## Tasks
 
