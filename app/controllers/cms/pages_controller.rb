@@ -9,19 +9,17 @@ module Cms
     before_filter :hide_toolbar, :only => [:new, :create]
     before_action :strip_visibility_params, :only => [:create, :update]
 
-    before_action :only => [:create] do
-      redirect_to "/" if canceled?
+    include Cms::PublishWorkflow
+
+    def resource
+      @page
     end
 
-    before_action :only => [:update] do
-      redirect_to page_path(@page) if canceled?
+    def resource_param
+      :page
     end
 
-    before_action :only => [:create, :update] do
-      params[:page][:publish_on_save] = false if save_draft?
-      params[:page][:publish_on_save] = true if publish?
-    end
-
+    #def on_cancel
     def new
       @page = Page.new(:section => @section, :cacheable => true)
       if @section.child_nodes.count < 1
@@ -114,18 +112,6 @@ module Cms
 
 
     private
-
-    def canceled?
-      params[:commit] == "Cancel"
-    end
-
-    def save_draft?
-      params[:commit] == "Save Draft"
-    end
-
-    def publish?
-      params[:commit] == "Publish"
-    end
 
     def page_params
       params.require(:page).permit(Cms::Page.permitted_params)

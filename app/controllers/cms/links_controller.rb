@@ -5,6 +5,20 @@ module Cms
     before_filter :load_link, :only => [:destroy, :update]
     before_filter :load_draft_link, :only => [:edit]
 
+    include Cms::PublishWorkflow
+
+    def resource
+      @link
+    end
+
+    def resource_param
+      :link
+    end
+
+    def show
+      redirect_to sitemap_path
+    end
+
     def new
       @link = Link.new(:section => @section)
     end

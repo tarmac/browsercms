@@ -1,9 +1,23 @@
-<%= render partial: 'cms/section_nodes/button_bar' %>
-
-<%= f.input :name %>
-<%= f.input :url %>
-<%= f.input :new_window, label: "Open In New Window?" %>
-<div class="buttons">
-  <%= publish_button "link" %>
-  <%= f.button :submit,  "Save" %>
+<div class="padded row-fluid clearfix">
+  <h1 class="span6"><%= title %></h1>
+  <span class="span6 top-buttons">
+      <%= f.button :submit, "Publish", class: 'right btn btn-small btn-primary' %>
+    <div class="btn-group right">
+      <%= f.button :submit, "Cancel", class: 'btn btn-small' %>
+      <%= f.button :submit, "Save Draft", class: 'btn btn-small' %>
+    </div>
+  </span>
 </div>
+<div class="padded row-fluid clearfix">
+  <%= f.input :name %>
+  <%= f.input :url %>
+  <%= f.input :new_window, label: "Open In New Window?" %>
+</div>
+<div class="form-actions clearfix">
+  <%= f.button :submit, "Publish", class: 'right btn btn-primary' %>
+  <div class="btn-group right">
+    <%= f.button :submit, "Cancel", class: 'btn' %>
+    <%= f.button :submit, "Save Draft", class: 'btn' %>
+  </div>
+</div>
+
