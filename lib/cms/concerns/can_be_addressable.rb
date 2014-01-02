@@ -265,13 +265,6 @@ module Cms
         self.class.name.demodulize.underscore
       end
 
-      # Pages/Links/Attachments use their parent to determine access
-      module LeafNode
-        def access_status
-          parent.status
-        end
-      end
-
       # alias :node, :section_node
       module NodeAccessors
         def node
@@ -291,7 +284,6 @@ module Cms
           #model_class.attr_accessible :section_id, :section
         end
 
-        include LeafNode
 
         def build_node(opts)
           build_section_node(opts)

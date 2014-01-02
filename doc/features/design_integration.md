@@ -15,7 +15,6 @@
 
 ## Sitemap
 
-- Delete old helpers from section_node
 - Check performance
 
 ## Tasks
