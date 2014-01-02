@@ -107,7 +107,7 @@ Sitemap.prototype.open = function(row, options) {
 
 // Attempts to open the given row. Will skip if the item cannot or is already open.
 Sitemap.prototype.attemptOpen = function(row, options) {
-  if (!this.isOpen(row)) {
+  if (this.isClosable(row) && !this.isOpen(row)) {
     this.open(row, options);
   }
 };
@@ -141,7 +141,7 @@ var sitemap = new Sitemap();
 $(function() {
   if ($('#sitemap').exists()) {
 
-    $('#sitemap .nav-list-span').draggable({
+    $('#sitemap .draggable').draggable({
       containment: '#sitemap',
       revert: true,
       revertDuration: 0,

@@ -13,6 +13,14 @@ module Cms
     end
 
 
+    def draggable_class?(modifiable_sections, section_node, parent)
+      if !section_node.root? && current_user_can_modify(modifiable_sections, section_node, parent)
+        'draggable'
+      else
+        ''
+      end
+    end
+
     def add_page_path_data(section_node, parent_section_node)
       section = figure_out_target_section(parent_section_node, section_node)
       new_section_page_path(section)
