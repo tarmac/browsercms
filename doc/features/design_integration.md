@@ -9,7 +9,7 @@
 * Fonts for Dashboard table headers/menus are just less bold than in design.
 * Icons for:
     - Links
-    - Visual Indicator for a section/page can't be editted. (Currently just removing the buttons)
+    - Visual Indicator for a section/page can't be edited. (Currently just removing the buttons)
     -
 
 ## Sitemap
@@ -17,6 +17,7 @@
 - Add page/section to selected item
 - Remove filters (feature for later)
 - Check performance
+- Icon for hovering is annoying
 
 ## Tasks
 
