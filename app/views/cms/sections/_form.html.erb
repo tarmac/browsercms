@@ -2,6 +2,9 @@
   <h1 class="span6"><%= title %></h1>
   <span class="span6 top-buttons">
     <button type="submit" class="right btn btn-small btn-primary">Save</button>
+    <div class="btn-group right">
+      <%= f.button :submit, 'Cancel', class: 'btn btn-small' %>
+    </div>
   </span>
 </div>
 <div class="padded row-fluid clearfix">
@@ -34,4 +37,7 @@
 </div>
 <div class="form-actions clearfix">
   <button type="submit" class="right btn btn-primary">Save</button>
+  <div class="btn-group right">
+    <%= f.button :submit, 'Cancel', class: 'btn' %>
+  </div>
 </div>

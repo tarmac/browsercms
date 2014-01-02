@@ -7,6 +7,11 @@ module Cms
     helper_method :public_groups
     helper_method :cms_groups
 
+    include Cms::PublishWorkflow::AllowCanceling
+    def resource
+      @section
+    end
+
     def index
       redirect_to cms.sitemap_path
     end
