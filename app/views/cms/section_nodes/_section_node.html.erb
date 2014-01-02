@@ -10,13 +10,13 @@
           data-add-section-path="<%= add_section_path_data(section_node, parent) %>"
     >
         <span class="text">
-            <%= icon_tag(section_node, children) %>
+          <%= icon_tag(section_node, children) %>
           <%= section_node.node.name %>
         </span>
 
       <% if current_user_can_modify(@modifiable_sections, section_node, parent) %>
-      <%= render partial: 'row_buttons', locals: {section_node: section_node} %>
-          <% end %>
+        <%= render partial: 'row_buttons', locals: {section_node: section_node} %>
+      <% end %>
       <%= render partial: 'status', locals: {parent: parent.node, content: section_node.node} if parent %>
     </span>
     <%= render partial: 'children', locals: {parent: section_node, children: children} %>
