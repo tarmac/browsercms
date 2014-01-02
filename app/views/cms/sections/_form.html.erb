@@ -9,8 +9,8 @@
 </div>
 <div class="padded row-fluid clearfix">
   <%= f.input :name, slug_source_if(f.object.new_record?) %>
-  <%= f.input :path, input_html: {class: 'slug-dest', data: {prefix: parent.path}} %>
-  <%= f.input :hidden, label: "Hide from menus?" %>
+  <%= f.input :path, input_html: {class: 'slug-dest', data: {prefix: parent.path}} if parent %>
+  <%= f.input :hidden, label: "Hide from menus?" if parent %>
   <%= able_to?(:administrate) do %>
       <%= f.association :groups,
                         collection: public_groups,

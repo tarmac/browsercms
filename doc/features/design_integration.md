@@ -23,6 +23,10 @@
 * Extract common HTML from title menus.
 * Should there be a 'form' layout?
 
+### Sitemap
+
+* Make Hide/Archive work
+* Can move root section
 
 ### Dashboard
 * Publishing pages without selecting on throws an error.
