@@ -60,6 +60,13 @@ module Cms
       content_tag("span", "", {'aria-hidden' => true, class: "type-icon icon-#{name}"})
     end
 
+    def current_user_can_modify(modifiable_sections, section_node, parent)
+      if section_node.section?
+        modifiable_sections.include?(section_node.node)
+      else
+        modifiable_sections.include?(parent)
+      end
+    end
 
     # Determines if a row is leaf or folder based on whether there are any subchildren.
     def row_type_tag(section_node)

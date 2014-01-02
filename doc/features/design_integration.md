@@ -9,10 +9,14 @@
 * Fonts for Dashboard table headers/menus are just less bold than in design.
 * Icons for:
     - Links
+    - Visual Indicator for a section/page can't be editted. (Currently just removing the buttons)
+    -
 
 ## Sitemap
 
-- Disable access to sections for editors without permissions.
+- Add page/section to selected item
+- Remove filters (feature for later)
+- Check performance
 
 ## Tasks
 
