@@ -25,8 +25,7 @@
 
 ### Sitemap
 
-* Make Hide/Archive work
-* Can move root section
+* Make Hide/Archive/Publish work
 
 ### Dashboard
 * Publishing pages without selecting on throws an error.
