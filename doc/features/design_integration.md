@@ -13,9 +13,6 @@
     -
 * Selecting a section always toggles. Might want to select an open section to add content to it, but not close it.
 
-## Sitemap
-
-- Check performance
 
 ## Tasks
 
