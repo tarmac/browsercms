@@ -16,6 +16,8 @@
 
 ## Tasks
 
+* Forms: Label: false should always be paired with: input_html: {class: 'input-block-level'}
+
 ### New Page
 
 

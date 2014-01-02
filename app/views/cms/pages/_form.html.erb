@@ -12,14 +12,14 @@
       </div>
       <div class="span4">
         <div class="sidebar-block">
-          <h4>Status &nbsp; <span class="dark">Draft</span></h4>
+          <h4 class="gray">Status &nbsp; <span class="dark">Draft</span></h4>
           <%# FEATURE: Pages don't have Publish Dates yet.
       <h4 class="gray">Publish Date</h4>
       <h4>June 31, 2013 <a href="#" class="add-link right">Edit</a></h4>
           %>
           <% if current_user.able_to?(:publish_content) %>
-              <h4>Visibility</h4>
-              <%= f.input :visibility, label: false, collection: @page.visibilities, prompt: false %>
+              <h4 class="gray label">Visibility</h4>
+              <%= f.input :visibility, label: false, collection: @page.visibilities, prompt: false, input_html: {class: 'input-block-level'} %>
           <% end %>
         </div>
 
@@ -41,7 +41,7 @@
         </div>
         %>
         <div class="sidebar-block">
-          <h4>Performance Tuning</h4>
+          <h4 class="gray">Performance Tuning</h4>
           <%= f.input :cacheable, label: "Allow Caching?", hint: "Uncheck for pages that show personalized information." %>
 
         </div>
