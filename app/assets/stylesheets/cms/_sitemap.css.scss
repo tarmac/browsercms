@@ -57,11 +57,6 @@
 				.type-icon {
 					@include opacity(1);
 				}
-				.icon-folder {
-					&:before {
-						content: "\e00e";
-					}
-				}
 			}
 
 			.type-icon {

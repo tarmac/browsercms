@@ -11,11 +11,11 @@
     - Links
     - Visual Indicator for a section/page can't be edited. (Currently just removing the buttons)
     -
+* Selecting a section always toggles. Might want to select an open section to add content to it, but not close it.
 
 ## Sitemap
 
-- Section open state isn't being saved (after adding content?)
-- Section icons are not being reset when closed
+- Delete old helpers from section_node
 - Check performance
 
 ## Tasks

@@ -14,7 +14,7 @@ var Sitemap = function() {
 // Name of cookie that stores SectionNode ids that should be opened.
 Sitemap.STATE = 'cms.sitemap.open_folders';
 
-Sitemap.prototype.select = function(selectedRow){
+Sitemap.prototype.select = function(selectedRow) {
   $('.nav-list-span').removeClass('active');
   selectedRow.addClass('active');
   newContentButton.updateButtons(selectedRow);
@@ -192,12 +192,10 @@ $(function() {
   // Ensure this only loads on sitemap page.
   if ($('#sitemap').exists()) {
     sitemap.restoreOpenState();
-    $('.nav-list-span').on('click',
-      function(event) {
-        sitemap.toggleOpen($(this));
-      }).on('click', function() {
-        sitemap.select($(this));
-      });
+    $('.nav-list-span').on('click', function(event) {
+      sitemap.toggleOpen($(this));
+      sitemap.select($(this));
+    });
   }
 
 });
