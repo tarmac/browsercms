@@ -5,6 +5,9 @@
           data-depth="<%= section_node.depth + 1 %>"
           data-type="<%= row_type_tag(section_node) %>"
           data-closable="<%= closable_data(section_node, children) %>"
+          data-add-page-path="<%= add_page_path_data(section_node, parent) %>"
+          data-add-link-path="<%= add_link_path_data(section_node, parent) %>"
+          data-add-section-path="<%= add_section_path_data(section_node, parent) %>"
     >
         <span class="text">
             <%= icon_tag(section_node, children) %>

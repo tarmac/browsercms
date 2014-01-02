@@ -4,6 +4,7 @@
 //= require 'bootstrap'
 //= require 'cms/ajax'
 //= require 'underscore'
+//= require 'cms/new_content_button'
 
 // Sitemap uses JQuery.Draggable/Droppable to handling moving elements, with custom code below.
 // Open/Close are handled as code below.
@@ -12,6 +13,12 @@ var Sitemap = function() {
 
 // Name of cookie that stores SectionNode ids that should be opened.
 Sitemap.STATE = 'cms.sitemap.open_folders';
+
+Sitemap.prototype.select = function(selectedRow){
+  $('.nav-list-span').removeClass('active');
+  selectedRow.addClass('active');
+  newContentButton.updateButtons(selectedRow);
+};
 
 // Different Content types have different behaviors when double clicked.
 Sitemap.prototype._doubleClick = function(event) {
@@ -132,49 +139,52 @@ var sitemap = new Sitemap();
 
 // Enable dragging of items around the sitemap.
 $(function() {
-  $('#sitemap .nav-list-span').draggable({
-    containment: '#sitemap',
-    revert: true,
-    revertDuration: 0,
-    axis: 'y',
-    delay: 250,
-    cursor: 'move',
-    stack: '.nav-list-span'
-  });
+  if ($('#sitemap').exists()) {
 
-  $('#sitemap .nav-list-span').droppable({
-    hoverClass: "droppable",
-    drop: function(event, ui) {
-      var elementToMove = ui.draggable.parents('.nav-list').first();
-      var elementDroppedOn = $(this).parents('.nav-list').first();
-      var targetDepth = $(this).data('depth');
+    $('#sitemap .nav-list-span').draggable({
+      containment: '#sitemap',
+      revert: true,
+      revertDuration: 0,
+      axis: 'y',
+      delay: 250,
+      cursor: 'move',
+      stack: '.nav-list-span'
+    });
+
+    $('#sitemap .nav-list-span').droppable({
+      hoverClass: "droppable",
+      drop: function(event, ui) {
+        var elementToMove = ui.draggable.parents('.nav-list').first();
+        var elementDroppedOn = $(this).parents('.nav-list').first();
+        var targetDepth = $(this).data('depth');
 
 
-      if (sitemap.isFolder($(this))) {
-        // Drop INTO sections
-        sitemap.attemptOpen($(this));
-        sitemap.updateDepth(ui.draggable, targetDepth + 1);
-        elementDroppedOn.find('li').first().append(elementToMove);
-        var newParentId = $(this).data('id');
-      } else {
-        sitemap.updateDepth(ui.draggable, targetDepth);
-        // Drop AFTER pages
-        var newParentId = elementDroppedOn.parents('.nav-list:first').find('.nav-list-span:first').data('id');
-        elementToMove.insertAfter(elementDroppedOn);
+        if (sitemap.isFolder($(this))) {
+          // Drop INTO sections
+          sitemap.attemptOpen($(this));
+          sitemap.updateDepth(ui.draggable, targetDepth + 1);
+          elementDroppedOn.find('li').first().append(elementToMove);
+          var newParentId = $(this).data('id');
+        } else {
+          sitemap.updateDepth(ui.draggable, targetDepth);
+          // Drop AFTER pages
+          var newParentId = elementDroppedOn.parents('.nav-list:first').find('.nav-list-span:first').data('id');
+          elementToMove.insertAfter(elementDroppedOn);
+        }
+
+        // Move item on server
+        var nodeIdToMove = ui.draggable.data('id');
+        var newPosition = elementToMove.index();
+        console.log("Move section_node", nodeIdToMove, " to parent:", newParentId, 'at position', newPosition);
+        sitemap.moveTo(nodeIdToMove, newParentId, newPosition);
+
+        // Need a manual delay otherwise the animation happens before the insert.
+        window.setTimeout(function() {
+          ui.draggable.effect({effect: 'highlight', duration: 500, color: '#0079c1'});
+        }, 250);
       }
-
-      // Move item on server
-      var nodeIdToMove = ui.draggable.data('id');
-      var newPosition = elementToMove.index();
-      console.log("Move section_node", nodeIdToMove, " to parent:", newParentId, 'at position', newPosition);
-      sitemap.moveTo(nodeIdToMove, newParentId, newPosition);
-
-      // Need a manual delay otherwise the animation happens before the insert.
-      window.setTimeout(function() {
-        ui.draggable.effect({effect: 'highlight', duration: 500, color: '#0079c1'});
-      }, 250);
-    }
-  });
+    });
+  }
 });
 
 // Open/close folders when rows are clicked.
@@ -182,9 +192,12 @@ $(function() {
   // Ensure this only loads on sitemap page.
   if ($('#sitemap').exists()) {
     sitemap.restoreOpenState();
-    $('.nav-list-span').on('click', function(event) {
-      sitemap.toggleOpen($(this));
-    });
+    $('.nav-list-span').on('click',
+      function(event) {
+        sitemap.toggleOpen($(this));
+      }).on('click', function() {
+        sitemap.select($(this));
+      });
   }
 
 });

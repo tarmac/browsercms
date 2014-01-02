@@ -14,7 +14,8 @@
 
 ## Sitemap
 
-- Add page/section to selected item
+- Section open state isn't being saved (after adding content?)
+- Section icons are not being reset when closed
 - Check performance
 
 ## Tasks

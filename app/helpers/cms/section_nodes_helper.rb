@@ -12,6 +12,30 @@ module Cms
       end
     end
 
+
+    def add_page_path_data(section_node, parent_section_node)
+      section = figure_out_target_section(parent_section_node, section_node)
+      new_section_page_path(section)
+    end
+
+    def add_link_path_data(section_node, parent_section_node)
+      section = figure_out_target_section(parent_section_node, section_node)
+      new_section_link_path(section)
+    end
+
+    def add_section_path_data(section_node, parent_section_node)
+      section = figure_out_target_section(parent_section_node, section_node)
+      new_section_path(section_id: section)
+    end
+
+    def figure_out_target_section(parent_section_node, section_node)
+      section = if section_node.section?
+                  section_node.node
+                else
+                  parent_section_node.node
+                end
+    end
+
     # When sitemap initially renders, we only want to show first level.
     def initial_visibility_class(section_node)
       section_node.depth > 1 ? 'hide' : ''
@@ -45,24 +69,24 @@ module Cms
     # Generate the HTML for a given section node.
     def icon_tag(section_node, children)
       name = if section_node.ancestors.size == 0
-        'earth'
-      elsif section_node.home?
-        'house'
-      elsif section_node.link?
-        'link'
-      elsif section_node.page?
-        'file'
-      elsif children.empty?
-        'folder-open'
-      else
-        'folder'
-      end
+               'earth'
+             elsif section_node.home?
+               'house'
+             elsif section_node.link?
+               'link'
+             elsif section_node.page?
+               'file'
+             elsif children.empty?
+               'folder-open'
+             else
+               'folder'
+             end
       content_tag("span", "", {'aria-hidden' => true, class: "type-icon icon-#{name}"})
     end
 
     # Marks a section to determine if it can be opened/closed in the sitemap.
     def closable_data(section_node, children)
-      if(section_node.root?)
+      if (section_node.root?)
         false
       elsif !children.empty?
         true
