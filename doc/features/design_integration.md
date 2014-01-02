@@ -15,7 +15,6 @@
 ## Sitemap
 
 - Add page/section to selected item
-- Remove filters (feature for later)
 - Check performance
 - Icon for hovering is annoying
 
