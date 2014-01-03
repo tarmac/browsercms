@@ -35,7 +35,7 @@ Gem::Specification.new do |s|
   s.add_dependency "ancestry", "~> 1.2.4"
   s.add_dependency "ckeditor_rails", "~> 3.6.4"
   s.add_dependency "jquery-rails", "~> 2.0"
-  s.add_dependency("paperclip", "~> 3.0.3")
+  s.add_dependency("paperclip", "~> 3.4.2")
 
   # Required only for bcms-upgrade
   s.add_dependency "term-ansicolor"
